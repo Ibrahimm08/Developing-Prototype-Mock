@@ -1,0 +1,244 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    background-color: rgba(var(--colour2), 0.6);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+
+    width: 100%;
+    height: 70px;
+
+    color: whitesmoke;
+    justify-content: space-around;
+    gap: 30%;
+}
+
+.navbar a {
+    all: unset;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0);
+    transition: text-decoration-color 0.3s ease;
+}
+
+.navbar a:hover {
+    text-decoration-color: black;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 20px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+
+
+.hero {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero .title {
+    width: 350px;
+    padding: 1.5rem;
+    padding-left: 4%;
+    background-color: var(--colour1);
+    border-radius: 0px 15px 15px 0px;
+    
+    z-index: 1;
+}
+
+.hero img{
+    position: absolute;
+    right: 0;
+    width: 70%;
+    height: 60%;
+}
+
+
+.about .about-header {
+    justify-self: center;
+    text-align: center;
+    background-color: var(--colourB);
+    width: 25%;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+.about .about-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-content img {
+    width: 40%;
+    margin-left: 4%;
+}
+
+.about .about-content div {
+    width: 40%;
+    margin-right: 10%;
+}
+
+.about-content div h2 {
+    font-size: 28px;
+}
+
+
+.about {
+    margin-bottom: 100px;
+}
+
+
+
+
+.featured .featured-header {
+    background-color: var(--colourC);
+    width: 25%;
+    padding: 1rem;
+    padding-left: 4%;
+    border-radius: 0px 15px 15px 0px;
+    margin-bottom: 50px;
+}
+
+.featured p {
+    font-size: larger;
+    width: 80%;
+    margin-bottom: 100px;
+    text-align: center;
+    justify-self: center;
+}
+
+.featured .products {
+    display: flex;
+    justify-content: space-evenly;
+    height: 70vh;
+}
+
+.featured .product {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    background-color: var(--colourD);
+    height: 350px;
+    width: 300px;
+    padding: 1.5rem;
+    border-radius: 30px;
+
+    transition: 0.3s ease;
+}
+
+.featured .product:hover {
+    transform: translateY(5px);
+}
+
+.featured .product img {
+    height: 65%;
+}
+
+
+
+.featured .product button {
+    margin-top: 20px;
+
+    font-size: larger;
+
+    outline: none;
+    border: transparent 4px solid;
+    border-radius: 15px;
+
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.featured .product button:hover {
+    border-color: var(--colourA);
+}
+
+
+
+.featured .product:nth-child(1) {
+    background-color: var(--colourE);
+    margin-top: 4%;
+}
+
+.featured .product:nth-child(3) {
+    background-color: var(--colourF);
+    margin-top: 6%;
+}
+
+
+.featured {
+    margin-bottom: 100px;
+}
+
+
+
+.booking {
+    display: flex;
+    align-items: top;
+    justify-content: space-around;
+    gap: 5%;
+    margin-bottom: 100px;
+}
+
+.booking img {
+    width: 100%;
+}
+
+.booking .booking-content {
+    background-color: var(--colourH);
+    padding: 1rem;
+    margin-right: 4%;
+}
+
+.booking .booking-header {
+    margin-top: 0%;
+    background-color: var(--colourG);
+    padding: 0.5rem 2rem;
+    border-radius: 15px 0 0;
+}
+
+.booking .booking-content button {
+    margin: 10px;
+    padding: 1rem 1.5rem;
+    font-size: large;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.booking .booking-content button:hover {
+    background-color: var(--colourA);
+    transform: translateY(-5px);
+}
+
+
+.footer {
+    display: flex;
+    background-color: var(--colourA);
+
+    height: 40vh;
+    padding: 0rem 5rem;
+
+    align-items: center;
+    gap: 5%;
+
+    font-weight: bold;
+}
+
+.footer .divider {
+    border-right: solid 5px white;
+    height: 70%;
+}
