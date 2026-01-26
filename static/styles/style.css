@@ -30,6 +30,59 @@ img {
     /* Extra Colours */
     --colour1: #B4BECA;
     --colour2: 38, 174, 59;  /* RGB value to be able to apply opacity value when using rgba */
+}
 
+
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    background-color: var(--colourA);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+
+    width: 100%;
+    height: 70px;
+
+    color: whitesmoke;
+    justify-content: space-around;
+    gap: 30%;
+
+    animation-name: change-opacity;
+    animation-timeline: scroll();
+}
+
+@keyframes change-opacity {
+    0% {
+        background-color: var(--colourA);
+    }
+
+    20%,
+    100% {
+        background-color: rgba(var(--colour2), 0.6);
+    }
+}
+
+.navbar a {
+    all: unset;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 0, 0, 0);
+    transition: text-decoration-color 0.3s ease;
+}
+
+.navbar a:hover {
+    text-decoration-color: black;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 20px;
+    font-size: x-large;
+    font-weight: bold;
 }
 
