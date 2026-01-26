@@ -3,7 +3,7 @@
     top: 0;
     z-index: 10;
 
-    background-color: rgba(var(--colour2), 0.6);
+    background-color: var(--colourA);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,6 +15,20 @@
     color: whitesmoke;
     justify-content: space-around;
     gap: 30%;
+
+    animation-name: change-opacity;
+    animation-timeline: scroll();
+}
+
+@keyframes change-opacity {
+    0% {
+        background-color: var(--colourA);
+    }
+
+    20%,
+    100% {
+        background-color: rgba(var(--colour2), 0.6);
+    }
 }
 
 .navbar a {
@@ -50,11 +64,11 @@
     padding-left: 4%;
     background-color: var(--colour1);
     border-radius: 0px 15px 15px 0px;
-    
+
     z-index: 1;
 }
 
-.hero img{
+.hero img {
     position: absolute;
     right: 0;
     width: 70%;
@@ -133,7 +147,38 @@
     padding: 1.5rem;
     border-radius: 30px;
 
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.featured .product:nth-child(1) {
+    background-color: var(--colourE);
+    animation-name: change-pos1;
+    animation-timeline: scroll();
+}
+
+.featured .product:nth-child(3) {
+    background-color: var(--colourF);
+    animation-name: change-pos2;
+    animation-timeline: scroll()
+}
+
+
+@keyframes change-pos1 {
+    0%,45%{
+        margin-top: 0px;
+    }
+    55%,100%{
+        margin-top: 5%;
+    }
+}
+
+@keyframes change-pos2 {
+    0%,45%{
+        margin-top: 0px;
+    }
+    55%,100%{
+        margin-top: 10%;
+    }
 }
 
 .featured .product:hover {
@@ -168,15 +213,6 @@
 
 
 
-.featured .product:nth-child(1) {
-    background-color: var(--colourE);
-    margin-top: 4%;
-}
-
-.featured .product:nth-child(3) {
-    background-color: var(--colourF);
-    margin-top: 6%;
-}
 
 
 .featured {
@@ -201,6 +237,18 @@
     background-color: var(--colourH);
     padding: 1rem;
     margin-right: 4%;
+
+    animation-name: move-pos;
+    animation-timeline: scroll();
+}
+
+@keyframes move-pos {
+    0%,60%{
+        transform: translateX(50px);
+    }
+    100%{
+        transform: translateX(0px);
+    }
 }
 
 .booking .booking-header {
