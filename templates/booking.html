@@ -18,9 +18,72 @@
         <div class="links">
             <a href="">Calculator</a>
             <a href="">Products</a>
-            <a href="">Bookings</a>
+            <a href="booking.html">Bookings</a>
             <a href="">About</a>
             <a href=""><img src="{{url_for('static/images', filename='')}}" alt="Profile Icon"></a>
+        </div>
+
+    </div>
+
+
+    <div class="booking-about">
+        <h1>Book a Consultation</h1>
+
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt placeat eum facere error provident
+            veritatis, rerum vitae consectetur odit magnam dignissimos, cum culpa in sapiente. Aliquam ratione
+            voluptatem perspiciatis reprehenderit.
+        </p>
+    </div>
+
+    <div class="booking-form">
+
+        <form action="" method="POST">
+            <label for="name">Name</label>
+            <input type="text" maxlength="50" required>
+            <br>
+
+            <label for="email">Email</label>
+            <input type="email" required>
+            <br>
+
+            <label for="phone">Phone</label>
+            <input type="tel" required>
+            <br>
+
+            <label for="date">Booking Date</label>
+            <input type="date" name="date">
+            <br>
+
+            <label for="time">Booking Time</label>
+            <input type="time" name="time">
+            <br>
+
+            <button>Book</button>
+        </form>
+
+    </div>
+
+
+
+    <div class="footer">
+        <div>
+            <h1>Rolsa Technology</h1>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+            <p>Phone: +44 20 7947 6330</p>
+            <p>Email: emailBusiness@Domain.com</p>
+            <p>Post: Address</p>
+            <div>
+                <p>Socials</p>
+                <!-- Add Social Icons  -->
+                <a href=""><img src="" alt="Twitter Icon"></a>
+                <a href=""><img src="" alt="Instagram Icon"></a>
+                <a href=""><img src="" alt="Facebook Icon"></a>
+            </div>
         </div>
     </div>
 </body>
