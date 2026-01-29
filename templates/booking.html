@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
     <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/booking.css">
 </head>
 
 <body>
@@ -39,24 +40,48 @@
     <div class="booking-form">
 
         <form action="" method="POST">
-            <label for="name">Name</label>
-            <input type="text" maxlength="50" required>
-            <br>
+            <h3>Contact Details</h3>
+            <div class="form-section-a">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" maxlength="50" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" required placeholder="Email@domain.com">
+                </div>
+            </div>
 
-            <label for="email">Email</label>
-            <input type="email" required>
-            <br>
+            <div class="form-section-b">
+                <div>
+                    <label for="code">+</label>
+                    <input type="number" max="99" min="0" name="code" placeholder="44">
+                </div>
 
-            <label for="phone">Phone</label>
-            <input type="tel" required>
-            <br>
+                <div>
+                    <label for="phone">Phone</label>
+                    <br>
+                    <input type="tel" required placeholder="0164 570 006">
+                </div>
+            </div>
 
-            <label for="date">Booking Date</label>
-            <input type="date" name="date">
-            <br>
+            <h3>Booking Details</h3>
+            <div class="form-section-c">
+                <div>
+                    <label for="date">Booking Date</label>
+                    <br>
+                    <input type="date" name="date">
+                </div>
 
-            <label for="time">Booking Time</label>
-            <input type="time" name="time">
+                <br>
+
+                <div>
+                    <label for="time">Booking Time</label>
+                    <br>
+                    <input type="time" name="time">
+                </div>
+            </div>
+
             <br>
 
             <button>Book</button>
