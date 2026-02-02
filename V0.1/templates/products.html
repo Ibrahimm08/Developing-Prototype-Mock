@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/products.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h1>
+                <a href="index.html">Rolsa Technology</a>
+            </h1>
+        </div>
+        <div class="links">
+            <a href="">Calculator</a>
+            <a href="products.html">Products</a>
+            <a href="booking.html">Bookings</a>
+            <a href="">About</a>
+            <a href=""><img src="{{url_for('static/images', filename='')}}" alt="Profile Icon"></a>
+        </div>
+
+    </div>
+
+    <div class="product-about">
+        <h1>Products</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem debitis sequi corrupti obcaecati? Vero
+            vel voluptates natus laboriosam magni maxime animi. Animi esse ipsum voluptatibus. Id beatae iusto sed
+            delectus.
+        </p>
+    </div>
+
+
+    <div class="promoted-brands">
+        <h1 class="promoted-header">Featured Brands</h1>
+
+        <!-- Reused from index.html -->
+        <!-- Using nth child to style in css -->
+
+        <div class="brands">
+            <div class="brand">
+                <!-- Get name and image from db -->
+                <img src="" alt="brand logo">
+                <h2 class="brand-header">Lorem ipsum</h2>
+
+                <!-- Add filter on click-->
+                <a href=""><button>See</button></a>
+            </div>
+
+
+
+            <div class="brand">
+                <img src="" alt="brand logo">
+                <h2>Lorem ipsum</h2>
+
+                <a href=""><button>See</button></a>
+            </div>
+
+
+
+            <div class="brand">
+                <img src="" alt="brand logo">
+                <h2>Lorem ipsum</h2>
+
+                <a href=""><button>See</button></a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="product-catalogue">
+        <!-- Non product stuff -->
+        <h1>Browse Products</h1>
+
+        <!-- Use Grid Layout -->
+        <div class="inner">
+            <!--search sort controls-->
+            <div class="primary controls">
+                <div class="search-bar">
+                    <h3>Search</h3>
+                    <input type="search">
+                </div>
+
+                <div class="sort-dropdown">
+                    <label for="sortby">Sort by:</label>
+                    <select name="sortby">
+                        <option value="">Featured</option>
+                        <option value="">Cost-High to Low</option>
+                        <option value="">Cost-Low to High</option>
+                        <option value="">Rating</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <!-- Brand and product filtering using checkboxes ect -->
+            <div class="secondary controls">
+                <form action="" method="get">
+                    <div class="price-range">
+                        <h3>Price range</h3>
+                        <div>
+                            <label for="min-price">Min</label>
+                            <input type="number" name="min-price">
+                        </div>
+
+                        <p>-</p>
+
+                        <div>
+                            <label for="max-price">Max</label>
+                            <input type="number" name="max-price">
+                        </div>
+                    </div>
+
+
+                    <div class="brand-select">
+                        <h3>Brand(s)</h3>
+                        <!-- Repeat based on how many brands -->
+                        <div>
+                            <input type="checkbox" name="brand">
+                            <label for="brand">Brand-Name</label>
+                        </div>
+                    </div>
+
+                    <button type="submit">Apply</button>
+                    <button type="reset">Clear</button>
+                </form>
+            </div>
+
+
+            <!-- List of products will have overflow scroll -->
+            <div class="product-list">
+                <!-- Create a template of product list view to be reused -->
+
+                <div class="product">
+                    <div class="thumbnail">
+                        <img src="" alt="picture of product">
+                        <h2>Product Name</h2>
+                    </div>
+
+                    <div class="details">
+                        <div>
+                            <p>tags: </p>
+                            <p>brand: </p>
+                        </div>
+                        <div>
+                            <h3>Price:</h3>
+                            <button>View</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="footer">
+        <div>
+            <h1>Rolsa Technology</h1>
+        </div>
+
+        <div class="divider"></div>
+
+        <div>
+            <p>Phone: +44 20 7947 6330</p>
+            <p>Email: emailBusiness@Domain.com</p>
+            <p>Post: Address</p>
+            <div>
+                <p>Socials</p>
+                <!-- Add Social Icons  -->
+                <a href=""><img src="" alt="Twitter Icon"></a>
+                <a href=""><img src="" alt="Instagram Icon"></a>
+                <a href=""><img src="" alt="Facebook Icon"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

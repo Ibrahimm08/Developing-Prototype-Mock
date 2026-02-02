@@ -1,0 +1,229 @@
+.hero {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero .title {
+    width: 350px;
+    padding: 1.5rem;
+    padding-left: 4%;
+    background-color: var(--colour1);
+    border-radius: 0px 15px 15px 0px;
+
+    z-index: 1;
+}
+
+.hero img {
+    position: absolute;
+    right: 0;
+    width: 70%;
+    height: 60%;
+}
+
+
+.about .about-header {
+    justify-self: center;
+    text-align: center;
+    background-color: var(--colourB);
+    width: 25%;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 50px;
+}
+
+.about .about-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-content img {
+    width: 40%;
+    margin-left: 4%;
+}
+
+.about .about-content div {
+    width: 40%;
+    margin-right: 10%;
+}
+
+.about-content div h2 {
+    font-size: 28px;
+}
+
+
+.about {
+    margin-bottom: 100px;
+}
+
+
+
+
+.featured .featured-header {
+    background-color: var(--colourC);
+    width: 25%;
+    padding: 1rem;
+    padding-left: 4%;
+    border-radius: 0px 15px 15px 0px;
+    margin-bottom: 50px;
+}
+
+.featured p {
+    font-size: larger;
+    width: 80%;
+    margin-bottom: 100px;
+    text-align: center;
+    justify-self: center;
+}
+
+.featured .products {
+    display: flex;
+    justify-content: space-evenly;
+    height: 70vh;
+}
+
+.featured .product {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    background-color: var(--colourD);
+    height: 350px;
+    width: 300px;
+    padding: 1.5rem;
+    border-radius: 30px;
+
+    transition: all 0.3s ease;
+}
+
+.featured .product:nth-child(1) {
+    background-color: var(--colourE);
+    animation-name: change-pos1;
+    animation-timeline: scroll();
+}
+
+.featured .product:nth-child(3) {
+    background-color: var(--colourF);
+    animation-name: change-pos2;
+    animation-timeline: scroll()
+}
+
+
+@keyframes change-pos1 {
+
+    0%,
+    45% {
+        margin-top: 0px;
+    }
+
+    55%,
+    100% {
+        margin-top: 5%;
+    }
+}
+
+@keyframes change-pos2 {
+
+    0%,
+    45% {
+        margin-top: 0px;
+    }
+
+    55%,
+    100% {
+        margin-top: 10%;
+    }
+}
+
+.featured .product:hover {
+    transform: translateY(5px);
+}
+
+.featured .product img {
+    height: 65%;
+}
+
+
+
+.featured .product button {
+    margin-top: 20px;
+
+    font-size: larger;
+
+    outline: none;
+    border: transparent 4px solid;
+    border-radius: 15px;
+
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+
+.featured .product button:hover {
+    border-color: var(--colourA);
+}
+
+
+
+
+
+.featured {
+    margin-bottom: 100px;
+}
+
+
+
+.booking {
+    display: flex;
+    align-items: top;
+    justify-content: space-around;
+    gap: 5%;
+}
+
+.booking img {
+    width: 100%;
+}
+
+.booking .booking-content {
+    background-color: var(--colourH);
+    padding: 1rem;
+    margin-right: 4%;
+
+    animation-name: move-pos;
+    animation-timeline: scroll();
+}
+
+@keyframes move-pos {
+
+    0%,
+    60% {
+        transform: translateX(50px);
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.booking .booking-header {
+    margin-top: 0%;
+    background-color: var(--colourG);
+    padding: 0.5rem 2rem;
+    border-radius: 15px 0 0;
+}
+
+.booking .booking-content button {
+    margin: 10px;
+    padding: 1rem 1.5rem;
+    font-size: large;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.booking .booking-content button:hover {
+    background-color: var(--colourA);
+    transform: translateY(-5px);
+}
