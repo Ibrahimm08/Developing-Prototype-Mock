@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Booking (
     -- In Complete version would use encryption at rest for storing identifiable information
     Name VARCHAR(50) NOT NULL,
     Email VARCHAR(100) NOT NULL,
-    Tel VARCHAR(12) NUMERIC NOT NULL,
+    Tel VARCHAR(12) NOT NULL,
     Date DATE NOT NULL,
     Time VARCHAR(5),
     AccountID INTEGER,
