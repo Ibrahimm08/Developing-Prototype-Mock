@@ -42,7 +42,7 @@
         <!-- Reused from index.html -->
         <!-- Using nth child to style in css -->
 
-        <div class="Brands">
+        <div class="brands">
             <div class="brand">
                 <!-- Get name and image from db -->
                 <img src="" alt="brand logo">
@@ -77,10 +77,10 @@
 
     <div class="product-catalogue">
         <!-- Non product stuff -->
-        <div class="product-list-outside">
-            <h2>Browse Products</h2>
+        <h1>Browse Products</h1>
 
-
+        <!-- Use Grid Layout -->
+        <div class="inner">
             <!--search sort controls-->
             <div class="primary controls">
                 <div class="search-bar">
@@ -104,8 +104,8 @@
             <!-- Brand and product filtering using checkboxes ect -->
             <div class="secondary controls">
                 <form action="" method="get">
-                    <h3>Price range</h3>
                     <div class="price-range">
+                        <h3>Price range</h3>
                         <div>
                             <label for="min-price">Min</label>
                             <input type="number" name="min-price">
@@ -114,14 +114,14 @@
                         <p>-</p>
 
                         <div>
-                            <label for="max-price">Min</label>
+                            <label for="max-price">Max</label>
                             <input type="number" name="max-price">
                         </div>
                     </div>
 
 
-                    <h3>Brand(s)</h3>
                     <div class="brand-select">
+                        <h3>Brand(s)</h3>
                         <!-- Repeat based on how many brands -->
                         <div>
                             <input type="checkbox" name="brand">
@@ -133,32 +133,34 @@
                     <button type="reset">Clear</button>
                 </form>
             </div>
-        </div>
 
 
-        <!-- List of products will have overflow scroll -->
-        <div class="product-list">
-            <!-- Create a template of product list view to be reused -->
+            <!-- List of products will have overflow scroll -->
+            <div class="product-list">
+                <!-- Create a template of product list view to be reused -->
 
-            <div class="product">
-                <div class="thumbnail">
-                    <img src="" alt="">
-                    <h2>Product Name</h2>
+                <div class="product">
+                    <div class="thumbnail">
+                        <img src="" alt="picture of product">
+                        <h2>Product Name</h2>
+                    </div>
+
+                    <div class="details">
+                        <div>
+                            <p>tags: </p>
+                            <p>brand: </p>
+                        </div>
+                        <div>
+                            <h3>Price:</h3>
+                            <button>View</button>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="details">
-                    <div>
-                        <p>tags: </p>
-                        <p>brand: </p>
-                    </div>
-                    <div>
-                        <h3>Price:</h3>
-                        <button>View</button>
-                    </div>
-                </div>
             </div>
-
         </div>
+
+
 
     </div>
 
