@@ -77,22 +77,22 @@ def Products():
 
         # Brand filter
         if selected_brands:
-            placeholders = ",".join(["%s"] * len(selected_brands))
+            placeholders = ",".join(["?"] * len(selected_brands))
             conditions.append(f"BrandID IN ({placeholders})")
             params.extend(selected_brands)
 
         # Min price
         if min_price:
-            conditions.append("price >= %s")
+            conditions.append("price >= ?")
             params.append(min_price)
 
         # Max price
         if max_price:
-            conditions.append("price <= %s")
+            conditions.append("price <= ?")
             params.append(max_price)
 
         if search:
-            conditions.append("LOWER(Name) LIKE LOWER(%s)")
+            conditions.append("LOWER(Name) LIKE LOWER(?)")
             params.append(search)
             
         # Combine conditions
@@ -111,6 +111,33 @@ def Products():
     return render_template("products.html", products = products)
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        
+        username = request.form.get("username")
+        password = request.form.get("password")
+        
+        ConnectToDB()
+        
+        # Check if Username exist
+        query = "Select * From Account WHERE LOWER(Username) = LOWER(?)"
+        user = cursor.execute(query, (username,)).fetchone()
+        
+        if user:
+            stored_pass = user["Password"]
+            
+            #Compare hashed passwords
+            if bcrypt.checkpw(password.encode("utf-8"), stored_pass):
+                session["user"] = user["ID"]
+                return redirect("/dashboard")
+            # Check if bcrypted password match db password
+            
+        else:
+            print("Username or Password is incorrect")
+            
+        
+    return render_template("login.html")
 
 
 if __name__ == '__main__':
