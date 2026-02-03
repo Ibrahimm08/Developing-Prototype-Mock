@@ -51,8 +51,10 @@ def Calculate():
 def Products(): 
     ConnectToDB()
     
+    
     # Get all rows in Product to send to html to display
     products = cursor.execute("SELECT * FROM Product JOIN Brand ON Product.BrandID = Brand.ID").fetchall()
+    filtered_products = products
     
     DisconnectDB()
     
@@ -158,7 +160,7 @@ def Booking():
         ConnectToDB()
         
         conn.execute(query, values)
-        
+        conn.commit()
         DisconnectDB()
                 
         
@@ -207,7 +209,7 @@ def Sign_Up():
         
         email = request.form.get("email")
         # Hash password
-        password = (request.form.get("password")).encode("utf-8")
+        password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
         
         ConnectToDB()
         
@@ -226,13 +228,12 @@ def Sign_Up():
             values = (firstname, surname, email, password)    
             
             cursor.execute(query, values)
+            conn.commit()
             
             DisconnectDB()
             
-            redirect("/login")
-            
-        print ("Sign up failed")
-        
+            return redirect("/login")
+                
     return render_template("create.html")
     
     
