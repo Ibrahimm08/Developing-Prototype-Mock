@@ -192,7 +192,7 @@ def Dashboard():
     DisconnectDB()
     
     if request.method == "POST":
-        session.close()
+        session.clear()
         return redirect("/index")
     
     return render_template("dashboard.html", firstname=firstname, surname=surname, email=email, bookings=bookings)
