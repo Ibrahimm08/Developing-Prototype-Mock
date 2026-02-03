@@ -13,15 +13,23 @@
     <div class="navbar">
         <div class="logo">
             <h1>
-                <a href="index.html">Rolsa Technology</a>
+                <a href="{{ url_for('index') }}">Rolsa Technology</a>
             </h1>
         </div>
         <div class="links">
-            <a href="">Calculator</a>
-            <a href="products.html">Products</a>
-            <a href="booking.html">Bookings</a>
+            <a href="{{ url_for('calculator') }}">Calculator</a>
+            <a href="{{ url_for('products') }}">Products</a>
+            <a href="{{ url_for('booking') }}">Bookings</a>
             <a href="">About</a>
-            <a href=""><img src="{{url_for('static/images', filename='')}}" alt="Profile Icon"></a>
+            {% if session.user %}
+            <a href="{{ url_for('dashboard') }}">
+                <img src="{{url_for('static/images', filename='')}}" alt="Profile Icon">
+            </a>
+            {% else %}
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+            {% endif}
         </div>
 
     </div>

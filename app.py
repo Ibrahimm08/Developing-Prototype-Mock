@@ -44,18 +44,14 @@ def index():
 
 
 @app.route("/filter_products", methods=["GET", "POST"])
-def Products():
-    
-    
+def Products(): 
     ConnectToDB()
     
     # Get all rows in Product to send to html to display
     products = cursor.execute("SELECT * FROM Product").fetchall()
     
-       
     DisconnectDB()
     
-
     
     # For Debugging to see what is stored in products variable
     for row in products:
@@ -107,8 +103,11 @@ def Products():
         DisconnectDB()
         
         
-        
     return render_template("products.html", products = products)
+
+@app.route("/dashboard", methods=["GET", "POST"])
+def Dashboard():
+    return render_template("dashboard.html")
 
 @app.route("/create", methods=["GET", "POST"])
 def Sign_Up():
