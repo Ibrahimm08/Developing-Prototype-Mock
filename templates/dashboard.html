@@ -43,19 +43,42 @@
         <div class="booking section">
             <h2>Bookings</h2>
             <div>
-
+                <table class="tg">
+                    <thead>
+                        <tr>
+                            <th class="tg-0lax">ID</th>
+                            <th class="tg-0lax">Name</th>
+                            <th class="tg-0lax">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop for each booking associated with account -->
+                        {% for row in bookings %}
+                        <tr>
+                            <td class="tg-0lax">{{row["ID"]}}</td>
+                            <td class="tg-0lax">{{row["Name"]}}</td>
+                            <td class="tg-0lax">{{row["Date"]}} | {{row["Time"]}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
             </div>
         </div>
+
         <div class="info section">
             <h2>Account Info</h2>
             <div>
-
+                <p>Firstname: {{firstname}}</p>
+                <p>Surname: {{surname}}</p>
+                <p>Email: {{email}}</p>
             </div>
         </div>
         <div class="manage section">
             <h2>Manage Account</h2>
             <div>
-                <button>Sign Out</button>
+                <form action="/dashboard" method="post">
+                    <button>Sign Out</button>
+                </form>
             </div>
         </div>
     </div>
