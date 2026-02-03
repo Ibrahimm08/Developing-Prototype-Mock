@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static//styles/dashboard.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h1>
+                <a href="index.html">Rolsa Technology</a>
+            </h1>
+        </div>
+        <div class="links">
+            <a href="">Calculator</a>
+            <a href="products.html">Products</a>
+            <a href="booking.html">Bookings</a>
+            <a href="">About</a>
+            <a href=""><img src="{{url_for('static/images', filename='')}}" alt="Profile Icon"></a>
+        </div>
+    </div>
+
+    <div class="welcome">
+        <img src="" alt="profile Icon">
+        <h2>Hello {{firstname}} {{lastname}}</h2>
+    </div>
+
+    <div class="controls">
+        <div class="booking section">
+            <h2>Bookings</h2>
+            <div>
+
+            </div>
+        </div>
+        <div class="info section">
+            <h2>Account Info</h2>
+            <div>
+
+            </div>
+        </div>
+        <div class="manage section">
+            <h2>Manage Account</h2>
+            <div>
+                <button>Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
