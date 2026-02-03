@@ -121,14 +121,14 @@ def Booking():
     name = ""
     
     # Get email and name and use to prefill info
-    if session["user"]:
+    if session.get("user", {}):
         ConnectToDB()
         
         query = "Select Firstname, Surname, Email From Account WHERE ID = ?"
-        user_info = conn.execute(query, (session["user"],)).fetchone()
+        user_info = conn.execute(query, (session.get("user", {}),)).fetchone()
         
-        name = user_info["Firstname"], user_info["Surname"]
-        email = user_info["Email"]
+        name = user_info[1], user_info[2]
+        email = user_info[3]
         
     if request.method == "POST":
         # Get form values
@@ -142,13 +142,13 @@ def Booking():
         time = request.form.get("time")
         
         
-        if session["user"]:
+        if session.get("user", {}):
             query = """
             INSERT INTO Booking 
             (Name, Email, Tel, Date, Time, AccountID)
             VALUES (?, ?, ?, ?, ?, ?)
             """
-            values = (name, form_email, phone, date, time, session["user"])
+            values = (name, form_email, phone, date, time, session.get("user", {}))
         else:
             query = """
             INSERT INTO Booking 
@@ -185,9 +185,9 @@ def Dashboard():
     
     bookings =  conn.execute(query, (user_id,)).fetchall()
     
-    firstname = user["Firstname"]
-    surname = user["Surname"]
-    email = user["Email"]
+    firstname = user[1]
+    surname = user[2]
+    email = user[3]
     
     DisconnectDB()
     
@@ -209,8 +209,10 @@ def Sign_Up():
         
         email = request.form.get("email")
         # Hash password
-        password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
-        
+        password = request.form.get("password")
+
+        hashed = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+
         ConnectToDB()
         
         # Check if email does not already exist
@@ -225,7 +227,7 @@ def Sign_Up():
             (Firstname, Surname, Email, Password)
             VALUES (?, ?, ?, ?)
             """
-            values = (firstname, surname, email, password)    
+            values = (firstname, surname, email, hashed)    
             
             cursor.execute(query, values)
             conn.commit()
@@ -255,11 +257,11 @@ def Login():
         
         DisconnectDB()
         if user:
-            stored_pass = user["Password"]
+            stored_pass = user[4]
             
             #Compare hashed passwords
             if bcrypt.checkpw(password.encode("utf-8"), stored_pass):
-                session["user"] = user["ID"]
+                session["user"] = user[0]
                 return redirect("/dashboard")
             # Check if bcrypted password match db password
             
