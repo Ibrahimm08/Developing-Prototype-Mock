@@ -105,13 +105,44 @@ def Products():
         
     return render_template("products.html", products = products)
 
+
+
+
 @app.route("/booking", methods=["GET", "POST"])
 def Booking():
     return render_template("booking.html")
 
+
+
+
 @app.route("/dashboard", methods=["GET", "POST"])
 def Dashboard():
-    return render_template("dashboard.html")
+    user_id = session["user"]
+    
+    ConnectToDB()
+    
+    # Get account information
+    query = "Select * From Account Where ID = ?"
+    
+    user = conn.execute(query, (user_id,)).fetchone()
+    
+    # Get associated bookings   
+    query = "Select * From Booking Where AccountID = ?"
+    
+    bookings =  conn.execute(query, (user_id,)).fetchall()
+    
+    firstname = user["Firstname"]
+    surname = user["Surname"]
+    email = user["Email"]
+    
+    if request.method == "POST":
+        session.close()
+        return redirect("/index")
+    
+    return render_template("dashboard.html", firstname=firstname, surname=surname, email=email, bookings=bookings)
+
+
+
 
 @app.route("/create", methods=["GET", "POST"])
 def Sign_Up():
@@ -145,6 +176,9 @@ def Sign_Up():
             
     return render_template("create.html")
     
+    
+    
+    
 
 @app.route("/login", methods=["GET", "POST"])
 def Login():
@@ -173,6 +207,8 @@ def Login():
             
         
     return render_template("login.html")
+
+
 
 
 if __name__ == '__main__':
