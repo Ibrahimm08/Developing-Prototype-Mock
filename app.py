@@ -42,6 +42,10 @@ def Index():
     return render_template("index.html")
 
 
+@app.route("/Calculate")
+def Calculate():
+    return render_template("calculate.html")
+
 
 @app.route("/filter_products", methods=["GET", "POST"])
 def Products(): 

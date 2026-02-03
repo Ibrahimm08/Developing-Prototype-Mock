@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Calculator</title>
     <link rel="stylesheet" href="../static/styles/style.css">
-    <link rel="stylesheet" href="../static/styles/login.css">
+    <link rel="stylesheet" href="../static/styles/calculate.css">
 </head>
 
 <body>
@@ -32,29 +32,6 @@
             {% endif %}
         </div>
 
-    </div>
-
-    <div class="login">
-        <h1>Login</h1>
-        <form action="/login" method="POST">
-            <div>
-                <label for="username">
-                    Username/Email
-                </label>
-                <input type="email" name="username" required placeholder="account@email.com">
-            </div>
-            <div>
-                <label for="password">
-                    Password
-                </label>
-                <input type="password" name="password" required>
-            </div>
-            <div>
-                <button type="submit">Login</button>
-                or
-                <button type="button">Sign Up</button>
-            </div>
-        </form>
     </div>
 </body>
 
