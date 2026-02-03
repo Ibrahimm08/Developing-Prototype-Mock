@@ -213,13 +213,10 @@ def Sign_Up():
         
         # Check if email does not already exist
         query = "Select * From Account Where LOWER(Email) = LOWER(?)"
-        DisconnectDB()
         
         if cursor.execute(query, (email,)).fetchone():
             print("Email already in use")
-        else:
-            ConnectToDB()
-            
+        else:            
             query = """
             INSERT INTO Account 
             (Firstname, Surname, Email, Password)
@@ -232,6 +229,8 @@ def Sign_Up():
             DisconnectDB()
             
             redirect("/login")
+        
+        DisconnectDB()
             
     return render_template("create.html")
     
