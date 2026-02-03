@@ -110,7 +110,55 @@ def Products():
 
 @app.route("/booking", methods=["GET", "POST"])
 def Booking():
-    return render_template("booking.html")
+    
+    email = ""
+    name = ""
+    
+    # Get email and name and use to prefill info
+    if session["user"]:
+        ConnectToDB()
+        
+        query = "Select Firstname, Surname, Email From Account WHERE ID = ?"
+        user_info = conn.execute(query, (session["user"],)).fetchone()
+        
+        name = user_info["Firstname"], user_info["Surname"]
+        email = user_info["Email"]
+        
+    if request.method == "POST":
+        # Get form values
+        name = request.form.get("name")
+        form_email = request.form.get("email")
+        
+        # Combine the country code with phone number
+        phone = request.form.get("code") + request.form.get("phone")
+        
+        date = request.form.get("date")
+        time = request.form.get("time")
+        
+        
+        if session["user"]:
+            query = """
+            INSERT INTO Booking 
+            (Name, Email, Tel, Date, Time, AccountID)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """
+            values = (name, form_email, phone, date, time, session["user"])
+        else:
+            query = """
+            INSERT INTO Booking 
+            (Name, Email, Tel, Date, Time)
+            VALUES (?, ?, ?, ?, ?)
+            """
+            values = (name, form_email, phone, date, time)
+            
+        ConnectToDB()
+        
+        conn.execute(query, values)
+        
+        DisconnectDB()
+                
+        
+    return render_template("booking.html", email=email, name=name)
 
 
 
@@ -134,6 +182,8 @@ def Dashboard():
     firstname = user["Firstname"]
     surname = user["Surname"]
     email = user["Email"]
+    
+    DisconnectDB()
     
     if request.method == "POST":
         session.close()
@@ -159,18 +209,23 @@ def Sign_Up():
         
         # Check if email does not already exist
         query = "Select * From Account Where LOWER(Email) = LOWER(?)"
+        DisconnectDB()
+        
         if cursor.execute(query, (email,)).fetchone():
             print("Email already in use")
         else:
+            ConnectToDB()
+            
             query = """
             INSERT INTO Account 
             (Firstname, Surname, Email, Password)
             VALUES (?, ?, ?, ?)
             """
-
             values = (firstname, surname, email, password)    
-
+            
             cursor.execute(query, values)
+            
+            DisconnectDB()
             
             redirect("/login")
             
@@ -193,6 +248,7 @@ def Login():
         query = "Select * From Account WHERE LOWER(Email) = LOWER(?)"
         user = cursor.execute(query, (username,)).fetchone()
         
+        DisconnectDB()
         if user:
             stored_pass = user["Password"]
             
