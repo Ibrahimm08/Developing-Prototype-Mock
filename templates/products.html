@@ -13,18 +13,27 @@
     <div class="navbar">
         <div class="logo">
             <h1>
-                <a href="index.html">Rolsa Technology</a>
+                <a href="{{ url_for('Index') }}">Rolsa Technology</a>
             </h1>
         </div>
         <div class="links">
-            <a href="">Calculator</a>
-            <a href="products.html">Products</a>
-            <a href="booking.html">Bookings</a>
+            <a href="{{ url_for('Calculate') }}">Calculator</a>
+            <a href="{{ url_for('Products') }}">Products</a>
+            <a href="{{ url_for('Booking') }}">Bookings</a>
             <a href="">About</a>
-            <a href=""><img src="{{url_for('static/images', filename='')}}" alt="Profile Icon"></a>
+            {% if session.user %}
+            <a href="{{ url_for('Dashboard') }}">
+                <img src="{{ url_for('static', filename='images/account_icon.png') }}" alt="Profile Icon">
+            </a>
+            {% else %}
+            <a href="{{ url_for('Login') }}">
+                Login
+            </a>
+            {% endif %}
         </div>
 
     </div>
+
 
     <div class="product-about">
         <h1>Products</h1>
@@ -85,7 +94,7 @@
             <div class="primary controls">
                 <div class="search-bar">
                     <h3>Search</h3>
-                    <input type="search">
+                    <input type="search" name="search">
                 </div>
 
                 <div class="sort-dropdown">
@@ -103,19 +112,19 @@
 
             <!-- Brand and product filtering using checkboxes ect -->
             <div class="secondary controls">
-                <form action="" method="get">
+                <form action="" method="POST">
                     <div class="price-range">
                         <h3>Price range</h3>
                         <div>
                             <label for="min-price">Min</label>
-                            <input type="number" name="min-price">
+                            <input type="number" name="min-price" value="0">
                         </div>
 
                         <p>-</p>
 
                         <div>
                             <label for="max-price">Max</label>
-                            <input type="number" name="max-price">
+                            <input type="number" name="max-price" value="0">
                         </div>
                     </div>
 
@@ -123,10 +132,15 @@
                     <div class="brand-select">
                         <h3>Brand(s)</h3>
                         <!-- Repeat based on how many brands -->
+                        {% for row in products %}
+
                         <div>
-                            <input type="checkbox" name="brand">
-                            <label for="brand">Brand-Name</label>
+                            <input type="checkbox" value="{{row[7]}}" name="brand">
+                            <label for="brand">{{row[8]}}</label>
                         </div>
+
+                        {% endfor %}
+
                     </div>
 
                     <button type="submit">Apply</button>
@@ -139,23 +153,25 @@
             <div class="product-list">
                 <!-- Create a template of product list view to be reused -->
 
+                {% for row in filtered_products %}
                 <div class="product">
                     <div class="thumbnail">
                         <img src="" alt="picture of product">
-                        <h2>Product Name</h2>
+                        <h2>{{row[1]}}</h2>
                     </div>
 
                     <div class="details">
                         <div>
-                            <p>tags: </p>
-                            <p>brand: </p>
+                            <p>tags: {{row[5]}}</p>
+                            <p>brand: {{row[8]}}</p>
                         </div>
                         <div>
-                            <h3>Price:</h3>
+                            <h3>Price: {{row[2]}}</h3>
                             <button>View</button>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
             </div>
         </div>

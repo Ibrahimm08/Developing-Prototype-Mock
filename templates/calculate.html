@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="stylesheet" href="../static/styles/calculate.css">
+    <script src="../static//scripts/calculate.js" defer></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h1>
+                <a href="{{ url_for('Index') }}">Rolsa Technology</a>
+            </h1>
+        </div>
+        <div class="links">
+            <a href="{{ url_for('Calculate') }}">Calculator</a>
+            <a href="{{ url_for('Products') }}">Products</a>
+            <a href="{{ url_for('Booking') }}">Bookings</a>
+            <a href="">About</a>
+            {% if session.user %}
+            <a href="{{ url_for('Dashboard') }}">
+                <img src="{{ url_for('static', filename='images/account_icon.png') }}" alt="Profile Icon">
+            </a>
+            {% else %}
+            <a href="{{ url_for('Login') }}">
+                Login
+            </a>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <h1>Calculate Estimated Emmisions</h1>
+
+    <!-- Source: https://onecompiler.com/html/3zpx74xq4 -->
+    <div class="calculator">
+        <input type="number" id="distance" class="input-field" placeholder="Distance Travelled (km)">
+        <input type="number" id="emission" class="input-field" placeholder="Emission Factor (g/km)">
+        <button id="calculate" class="calculate-button">Calculate</button>
+        <p id="carbon-score" class="carbon-score">Carbon Score: </p>
+    </div>
+</body>
+
+</html>
