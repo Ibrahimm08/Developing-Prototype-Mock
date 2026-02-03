@@ -38,7 +38,7 @@ except mysql.connector.Error as err:
 @app.route("/")
 
 @app.route("/index")
-def index():
+def Index():
     return render_template("index.html")
 
 
@@ -104,6 +104,10 @@ def Products():
         
         
     return render_template("products.html", products = products)
+
+@app.route("/booking", methods=["GET", "POST"])
+def Booking():
+    return render_template("booking.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def Dashboard():
