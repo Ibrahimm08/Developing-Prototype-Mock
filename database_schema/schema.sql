@@ -21,7 +21,10 @@ CREATE TABLE IF NOT EXISTS Product (
 
 CREATE TABLE IF NOT EXISTS Account (
     ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    Username VARCHAR(50) NOT NULL,
+    Firstname VARCHAR(50) NOT NULL,
+    Surname VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+
     -- Use Python bcrypt to hash passwords before store
     Password VARCHAR(100) NOT NULL
 );

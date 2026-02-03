@@ -110,9 +110,41 @@ def Products():
         
     return render_template("products.html", products = products)
 
+@app.route("/create", methods=["GET", "POST"])
+def Sign_Up():
+    if request.method == "POST":
+        # Get form values
+        firstname = request.form.get("firstname")
+        surname = request.form.get("surname")
+        
+        email = request.form.get("email")
+        # Hash password
+        password = (request.form.get("password")).encode("utf-8")
+        
+        ConnectToDB()
+        
+        # Check if email does not already exist
+        query = "Select * From Account Where LOWER(Email) = LOWER(?)"
+        if cursor.execute(query, (email,)).fetchone():
+            print("Email already in use")
+        else:
+            query = """
+            INSERT INTO Account 
+            (Firstname, Surname, Email, Password)
+            VALUES (?, ?, ?, ?)
+            """
+
+            values = (firstname, surname, email, password)    
+
+            cursor.execute(query, values)
+            
+            redirect("/login")
+            
+    return render_template("create.html")
+    
 
 @app.route("/login", methods=["GET", "POST"])
-def login():
+def Login():
     if request.method == "POST":
         
         username = request.form.get("username")
@@ -121,7 +153,7 @@ def login():
         ConnectToDB()
         
         # Check if Username exist
-        query = "Select * From Account WHERE LOWER(Username) = LOWER(?)"
+        query = "Select * From Account WHERE LOWER(Email) = LOWER(?)"
         user = cursor.execute(query, (username,)).fetchone()
         
         if user:
