@@ -183,6 +183,8 @@
 
     display: flex;
     flex-wrap: wrap;
+
+    gap: 10px;
 }
 
 .product-catalogue .product {
@@ -212,12 +214,13 @@
 
 .product .thumbnail h2 {
     margin: 0;
+    text-align: center;
+    width: 110%;
 }
 
 
 .product .details {
     display: flex;
-
     justify-content: space-between;
 }
 

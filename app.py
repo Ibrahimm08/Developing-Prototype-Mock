@@ -52,7 +52,7 @@ def Products():
     ConnectToDB()
     
     # Get all rows in Product to send to html to display
-    products = cursor.execute("SELECT * FROM Product").fetchall()
+    products = cursor.execute("SELECT * FROM Product JOIN Brand ON Product.BrandID = Brand.ID").fetchall()
     
     DisconnectDB()
     
@@ -61,14 +61,14 @@ def Products():
     for row in products:
         print(row)
     
-    if request.method == "GET":
+    if request.method == "POST":
         # Get value from form
-        max_price = request.form.get["max-price"]
-        min_price = request.form.get["min-price"]
-        search = request.form.get["search"]
+        max_price = request.form.get("max-price")
+        min_price = request.form.get("min-price")
+        search = request.form.get("search")
         
         # Brand checked for filtering
-        selected_brands = request.form.getlist["brand"]
+        selected_brands = request.form.getlist("brand")
         
         conditions = []
         params = []
@@ -83,12 +83,12 @@ def Products():
 
         # Min price
         if min_price:
-            conditions.append("price >= ?")
+            conditions.append("Cost >= ?")
             params.append(min_price)
 
         # Max price
-        if max_price:
-            conditions.append("price <= ?")
+        if max_price and int(max_price) > 0:
+            conditions.append("Cost <= ?")
             params.append(max_price)
 
         if search:
@@ -99,15 +99,15 @@ def Products():
         # If no conditions do 1=1 which returns everything
         where_clause = " AND ".join(conditions) if conditions else "1=1"
 
-        query = f"SELECT * FROM Product WHERE {where_clause};"
+        query = f"SELECT * FROM Product JOIN Brand ON Product.BrandID = Brand.ID WHERE {where_clause};"
 
         cursor.execute(query, params)
-        products = cursor.fetchall()
+        filtered_products = cursor.fetchall()
             
         DisconnectDB()
         
         
-    return render_template("products.html", products = products)
+    return render_template("products.html", products = products, filtered_products=filtered_products)
 
 
 
@@ -216,6 +216,7 @@ def Sign_Up():
         
         if cursor.execute(query, (email,)).fetchone():
             print("Email already in use")
+            DisconnectDB()
         else:            
             query = """
             INSERT INTO Account 
@@ -229,9 +230,9 @@ def Sign_Up():
             DisconnectDB()
             
             redirect("/login")
-        
-        DisconnectDB()
             
+        print ("Sign up failed")
+        
     return render_template("create.html")
     
     
